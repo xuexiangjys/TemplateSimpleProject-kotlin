@@ -48,9 +48,11 @@ git clone https://github.com/xuexiangjys/TemplateSimpleProject.git
 
 ![templateproject_2.png](https://ss.im5i.com/2021/06/14/6Tbgl.png)
 
+![templateproject_3.png](https://c2.im5i.com/2021/12/30/EWqqG.png)
+
 * 修改applicationId
 
-![templateproject_3.png](https://ss.im5i.com/2021/06/14/6Ttu7.png)
+![templateproject_4.png](https://ss.im5i.com/2021/06/14/6Ttu7.png)
 
 * 修改app_name
 

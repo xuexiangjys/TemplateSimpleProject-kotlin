@@ -37,6 +37,7 @@ project.configurations.each { configuration ->
     }
 }
 
+// 这里需要修改包名
 aspectjx {
     include 'com.xuexiang.templateproject'
 }
