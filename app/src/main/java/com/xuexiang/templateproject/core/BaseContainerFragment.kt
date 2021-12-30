@@ -34,6 +34,7 @@ import java.util.*
  * @since 2018/11/22 上午11:26
  */
 abstract class BaseContainerFragment : XPageContainerListFragment() {
+
     override fun initPage() {
         initTitle()
         initViews()

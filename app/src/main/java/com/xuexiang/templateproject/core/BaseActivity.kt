@@ -35,11 +35,7 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper
  * @since 2019/3/22 11:21
  */
 open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
-    /**
-     * 获取Binding
-     *
-     * @return Binding
-     */
+
     /**
      * ViewBinding
      */
@@ -53,7 +49,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
 
     override fun getCustomRootView(): View? {
         binding = viewBindingInflate(layoutInflater)
-        return if (binding != null) binding!!.root else null
+        return binding?.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +81,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      */
     fun <T : XPageFragment?> openPage(clazz: Class<T>?, addToBackStack: Boolean): T {
         val page = CoreSwitchBean(clazz)
-                .setAddToBackStack(addToBackStack)
+            .setAddToBackStack(addToBackStack)
         return openPage(page) as T
     }
 
@@ -96,7 +92,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      */
     fun <T : XPageFragment?> openNewPage(clazz: Class<T>?): T {
         val page = CoreSwitchBean(clazz)
-                .setNewActivity(true)
+            .setNewActivity(true)
         return openPage(page) as T
     }
 
@@ -117,6 +113,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @return
      */
     fun serializeObject(`object`: Any?): String {
-        return XRouter.getInstance().navigation(SerializationService::class.java).object2Json(`object`)
+        return XRouter.getInstance().navigation(SerializationService::class.java)
+            .object2Json(`object`)
     }
 }

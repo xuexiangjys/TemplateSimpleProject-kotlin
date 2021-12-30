@@ -77,7 +77,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
         initListeners()
     }
 
-    protected fun initTitle(): TitleBar {
+    protected fun initTitle(): TitleBar? {
         return TitleUtils.addTitleBarDynamic(rootView as ViewGroup, pageTitle) { popToBack() }
     }
 
