@@ -69,7 +69,10 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param container 容器
      * @return ViewBinding
      */
-    protected abstract fun viewBindingInflate(inflater: LayoutInflater, container: ViewGroup): Binding
+    protected abstract fun viewBindingInflate(
+        inflater: LayoutInflater,
+        container: ViewGroup
+    ): Binding
 
     override fun initPage() {
         initTitle()
@@ -134,10 +137,10 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openNewPage(clazz: Class<T>?): Fragment {
+    fun <T : XPageFragment?> openNewPage(clazz: Class<T>?): Fragment? {
         return PageOption(clazz)
-                .setNewActivity(true)
-                .open(this)
+            .setNewActivity(true)
+            .open(this)
     }
 
     /**
@@ -147,11 +150,11 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openNewPage(pageName: String?): Fragment {
+    fun <T : XPageFragment?> openNewPage(pageName: String?): Fragment? {
         return PageOption(pageName)
-                .setAnim(CoreAnim.slide)
-                .setNewActivity(true)
-                .open(this)
+            .setAnim(CoreAnim.slide)
+            .setNewActivity(true)
+            .open(this)
     }
 
     /**
@@ -162,11 +165,14 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openNewPage(clazz: Class<T>?, containActivityClazz: Class<out XPageActivity?>): Fragment {
+    fun <T : XPageFragment?> openNewPage(
+        clazz: Class<T>?,
+        containActivityClazz: Class<out XPageActivity?>
+    ): Fragment? {
         return PageOption(clazz)
-                .setNewActivity(true)
-                .setContainActivityClazz(containActivityClazz)
-                .open(this)
+            .setNewActivity(true)
+            .setContainActivityClazz(containActivityClazz)
+            .open(this)
     }
 
     /**
@@ -178,30 +184,40 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openNewPage(clazz: Class<T>?, key: String?, value: Any?): Fragment {
+    fun <T : XPageFragment?> openNewPage(clazz: Class<T>?, key: String?, value: Any?): Fragment? {
         val option = PageOption(clazz).setNewActivity(true)
         return openPage(option, key, value)
     }
 
-    fun openPage(option: PageOption, key: String?, value: Any?): Fragment {
-        if (value is Int) {
-            option.putInt(key, (value as Int?)!!)
-        } else if (value is Float) {
-            option.putFloat(key, (value as Float?)!!)
-        } else if (value is String) {
-            option.putString(key, value as String?)
-        } else if (value is Boolean) {
-            option.putBoolean(key, (value as Boolean?)!!)
-        } else if (value is Long) {
-            option.putLong(key, (value as Long?)!!)
-        } else if (value is Double) {
-            option.putDouble(key, (value as Double?)!!)
-        } else if (value is Parcelable) {
-            option.putParcelable(key, value as Parcelable?)
-        } else if (value is Serializable) {
-            option.putSerializable(key, value as Serializable?)
-        } else {
-            option.putString(key, serializeObject(value))
+    private fun openPage(option: PageOption, key: String?, value: Any?): Fragment? {
+        when (value) {
+            is Int -> {
+                option.putInt(key, value)
+            }
+            is Float -> {
+                option.putFloat(key, value)
+            }
+            is String -> {
+                option.putString(key, value)
+            }
+            is Boolean -> {
+                option.putBoolean(key, value)
+            }
+            is Long -> {
+                option.putLong(key, value)
+            }
+            is Double -> {
+                option.putDouble(key, value)
+            }
+            is Parcelable -> {
+                option.putParcelable(key, value)
+            }
+            is Serializable -> {
+                option.putSerializable(key, value)
+            }
+            else -> {
+                option.putString(key, serializeObject(value))
+            }
         }
         return option.open(this)
     }
@@ -216,11 +232,16 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPage(clazz: Class<T>?, addToBackStack: Boolean, key: String?, value: String?): Fragment {
+    fun <T : XPageFragment?> openPage(
+        clazz: Class<T>?,
+        addToBackStack: Boolean,
+        key: String?,
+        value: String?
+    ): Fragment? {
         return PageOption(clazz)
-                .setAddToBackStack(addToBackStack)
-                .putString(key, value)
-                .open(this)
+            .setAddToBackStack(addToBackStack)
+            .putString(key, value)
+            .open(this)
     }
 
     /**
@@ -232,7 +253,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPage(clazz: Class<T>?, key: String?, value: Any?): Fragment {
+    fun <T : XPageFragment?> openPage(clazz: Class<T>?, key: String?, value: Any?): Fragment? {
         return openPage(clazz, true, key, value)
     }
 
@@ -246,7 +267,12 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPage(clazz: Class<T>?, addToBackStack: Boolean, key: String?, value: Any?): Fragment {
+    fun <T : XPageFragment?> openPage(
+        clazz: Class<T>?,
+        addToBackStack: Boolean,
+        key: String?,
+        value: Any?
+    ): Fragment? {
         val option = PageOption(clazz).setAddToBackStack(addToBackStack)
         return openPage(option, key, value)
     }
@@ -260,10 +286,10 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPage(clazz: Class<T>?, key: String?, value: String?): Fragment {
+    fun <T : XPageFragment?> openPage(clazz: Class<T>?, key: String?, value: String?): Fragment? {
         return PageOption(clazz)
-                .putString(key, value)
-                .open(this)
+            .putString(key, value)
+            .open(this)
     }
 
     /**
@@ -276,7 +302,12 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPageForResult(clazz: Class<T>?, key: String?, value: Any?, requestCode: Int): Fragment {
+    fun <T : XPageFragment?> openPageForResult(
+        clazz: Class<T>?,
+        key: String?,
+        value: Any?,
+        requestCode: Int
+    ): Fragment? {
         val option = PageOption(clazz).setRequestCode(requestCode)
         return openPage(option, key, value)
     }
@@ -291,11 +322,16 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPageForResult(clazz: Class<T>?, key: String?, value: String?, requestCode: Int): Fragment {
+    fun <T : XPageFragment?> openPageForResult(
+        clazz: Class<T>?,
+        key: String?,
+        value: String?,
+        requestCode: Int
+    ): Fragment? {
         return PageOption(clazz)
-                .setRequestCode(requestCode)
-                .putString(key, value)
-                .open(this)
+            .setRequestCode(requestCode)
+            .putString(key, value)
+            .open(this)
     }
 
     /**
@@ -306,10 +342,10 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param <T>
      * @return
     </T> */
-    fun <T : XPageFragment?> openPageForResult(clazz: Class<T>?, requestCode: Int): Fragment {
+    fun <T : XPageFragment?> openPageForResult(clazz: Class<T>?, requestCode: Int): Fragment? {
         return PageOption(clazz)
-                .setRequestCode(requestCode)
-                .open(this)
+            .setRequestCode(requestCode)
+            .open(this)
     }
 
     /**
@@ -319,7 +355,8 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return 序列化结果
      */
     fun serializeObject(`object`: Any?): String {
-        return XRouter.getInstance().navigation(SerializationService::class.java).object2Json(`object`)
+        return XRouter.getInstance().navigation(SerializationService::class.java)
+            .object2Json(`object`)
     }
 
     /**
@@ -330,7 +367,8 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return 反序列化结果
      */
     fun <T> deserializeObject(input: String?, clazz: Type?): T {
-        return XRouter.getInstance().navigation(SerializationService::class.java).parseObject(input, clazz)
+        return XRouter.getInstance().navigation(SerializationService::class.java)
+            .parseObject(input, clazz)
     }
 
     override fun hideCurrentPageSoftInput() {
