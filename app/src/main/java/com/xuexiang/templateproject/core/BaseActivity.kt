@@ -63,14 +63,14 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @param inflater  inflater
      * @return ViewBinding
      */
-    protected fun viewBindingInflate(inflater: LayoutInflater?): Binding? {
+    open fun viewBindingInflate(inflater: LayoutInflater?): Binding? {
         return null
     }
 
     /**
      * 初始化状态栏的样式
      */
-    protected fun initStatusBarStyle() {}
+    open fun initStatusBarStyle() {}
 
     /**
      * 打开fragment

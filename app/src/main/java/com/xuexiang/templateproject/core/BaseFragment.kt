@@ -47,11 +47,6 @@ import java.lang.reflect.Type
 abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     private var mIMessageLoader: IMessageLoader? = null
     /**
-     * 获取Binding
-     *
-     * @return Binding
-     */
-    /**
      * ViewBinding
      */
     var binding: Binding? = null
@@ -80,7 +75,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
         initListeners()
     }
 
-    protected fun initTitle(): TitleBar? {
+    open fun initTitle(): TitleBar? {
         return TitleUtils.addTitleBarDynamic(rootView as ViewGroup, pageTitle) { popToBack() }
     }
 

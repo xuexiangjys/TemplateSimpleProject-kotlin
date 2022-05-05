@@ -37,13 +37,14 @@ import java.io.Serializable
  * @since 2018/12/29 下午12:41
  */
 abstract class BaseSimpleListFragment : XPageSimpleListFragment() {
+
     override fun initPage() {
         initTitle()
         initViews()
         initListeners()
     }
 
-    protected fun initTitle(): TitleBar {
+    private fun initTitle(): TitleBar {
         return TitleUtils.addTitleBarDynamic(rootView as ViewGroup, pageTitle) { popToBack() }
     }
 
