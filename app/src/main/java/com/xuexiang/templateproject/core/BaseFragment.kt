@@ -52,9 +52,9 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     var binding: Binding? = null
         protected set
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View? {
         binding = viewBindingInflate(inflater, container)
-        return binding!!.root
+        return binding?.root
     }
 
     /**
@@ -92,7 +92,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
         if (mIMessageLoader == null) {
             mIMessageLoader = WidgetUtils.getMiniLoadingDialog(requireContext(), message!!)
         } else {
-            mIMessageLoader!!.updateMessage(message)
+            mIMessageLoader?.updateMessage(message)
         }
         return mIMessageLoader
     }
@@ -108,9 +108,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     }
 
     override fun onDestroyView() {
-        if (mIMessageLoader != null) {
-            mIMessageLoader!!.dismiss()
-        }
+        mIMessageLoader?.dismiss()
         super.onDestroyView()
         binding = null
     }
