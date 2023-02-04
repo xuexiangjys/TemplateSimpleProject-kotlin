@@ -35,7 +35,7 @@
 1.克隆项目
 
 ```
-git clone https://github.com/xuexiangjys/TemplateSimpleProject.git
+git clone https://github.com/xuexiangjys/TemplateSimpleProject-kotlin.git
 ```
 
 2.修改项目名（文件夹名），并删除目录下的.git文件夹（隐藏文件）
