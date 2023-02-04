@@ -29,7 +29,9 @@ import com.xuexiang.xutil.common.StringUtils
  * @author xuexiang
  * @since 2018/12/19 上午12:19
  */
-class SimpleListAdapter(context: Context?, data: List<Map<String?, String?>?>?) : BaseListAdapter<Map<String?, String?>, SimpleListAdapter.ViewHolder>(context, data) {
+class SimpleListAdapter(context: Context?, data: List<Map<String?, String?>?>?) :
+    BaseListAdapter<Map<String?, String?>, SimpleListAdapter.ViewHolder>(context, data) {
+
     override fun newViewHolder(convertView: View): ViewHolder {
         val holder = ViewHolder()
         holder.mTvTitle = convertView.findViewById(R.id.tv_title)

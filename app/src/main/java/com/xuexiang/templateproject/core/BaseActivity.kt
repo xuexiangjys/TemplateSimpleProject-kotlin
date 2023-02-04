@@ -81,6 +81,18 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      */
     open fun initStatusBarStyle() {}
 
+    override fun onDestroy() {
+        super.onDestroy()
+        onViewBindingUnbind()
+    }
+
+    /**
+     * ViewBinding解绑
+     */
+    open fun onViewBindingUnbind() {
+        binding = null
+    }
+
     /**
      * 打开fragment
      *

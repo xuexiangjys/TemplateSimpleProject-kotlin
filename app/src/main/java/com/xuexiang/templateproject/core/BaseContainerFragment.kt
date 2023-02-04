@@ -25,7 +25,6 @@ import com.xuexiang.xaop.annotation.SingleClick
 import com.xuexiang.xpage.base.XPageContainerListFragment
 import com.xuexiang.xui.widget.actionbar.TitleBar
 import com.xuexiang.xui.widget.actionbar.TitleUtils
-import java.util.*
 
 /**
  * 修改列表样式为主副标题显示
@@ -53,7 +52,8 @@ abstract class BaseContainerFragment : XPageContainerListFragment() {
             val index = content.indexOf("\n")
             if (index > 0) {
                 item[SimpleListAdapter.KEY_TITLE] = content.subSequence(0, index).toString()
-                item[SimpleListAdapter.KEY_SUB_TITLE] = content.subSequence(index + 1, content.length).toString()
+                item[SimpleListAdapter.KEY_SUB_TITLE] =
+                    content.subSequence(index + 1, content.length).toString()
             } else {
                 item[SimpleListAdapter.KEY_TITLE] = content
                 item[SimpleListAdapter.KEY_SUB_TITLE] = ""
