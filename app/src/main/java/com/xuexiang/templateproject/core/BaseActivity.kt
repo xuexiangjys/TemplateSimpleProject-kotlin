@@ -49,6 +49,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
 
     override fun getCustomRootView(): View? {
         binding = viewBindingInflate(layoutInflater)
+        onViewBindingUpdate(binding)
         return binding?.root
     }
 
@@ -68,6 +69,14 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
     }
 
     /**
+     * ViewBinding更新
+     * @param binding ViewBinding
+     */
+    open fun onViewBindingUpdate(binding: Binding?) {
+
+    }
+
+    /**
      * 初始化状态栏的样式
      */
     open fun initStatusBarStyle() {}
@@ -80,8 +89,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @return 打开的fragment对象
      */
     fun <T : XPageFragment?> openPage(clazz: Class<T>?, addToBackStack: Boolean): T {
-        val page = CoreSwitchBean(clazz)
-            .setAddToBackStack(addToBackStack)
+        val page = CoreSwitchBean(clazz).setAddToBackStack(addToBackStack)
         return openPage(page) as T
     }
 
@@ -91,8 +99,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @return 打开的fragment对象
      */
     fun <T : XPageFragment?> openNewPage(clazz: Class<T>?): T {
-        val page = CoreSwitchBean(clazz)
-            .setNewActivity(true)
+        val page = CoreSwitchBean(clazz).setNewActivity(true)
         return openPage(page) as T
     }
 
