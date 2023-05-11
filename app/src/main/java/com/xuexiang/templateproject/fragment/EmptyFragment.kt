@@ -31,8 +31,10 @@ import com.xuexiang.xpage.annotation.Page
 @Page(name = "空页面")
 class EmptyFragment : BaseFragment<FragmentEmptyBinding?>() {
 
-    override fun viewBindingInflate(inflater: LayoutInflater, container: ViewGroup): FragmentEmptyBinding {
-        return FragmentEmptyBinding.inflate(inflater, container, false)
+    override fun viewBindingInflate(
+        inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean
+    ): FragmentEmptyBinding {
+        return FragmentEmptyBinding.inflate(inflater, container, attachToRoot)
     }
 
     /**

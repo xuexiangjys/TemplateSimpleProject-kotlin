@@ -45,7 +45,7 @@ abstract class BaseSimpleListFragment : XPageSimpleListFragment() {
     }
 
     private fun initTitle(): TitleBar {
-        return TitleUtils.addTitleBarDynamic(rootView as ViewGroup, pageTitle) { popToBack() }
+        return TitleUtils.addTitleBarDynamic(toolbarContainer, pageTitle) { popToBack() }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
