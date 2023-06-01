@@ -44,7 +44,7 @@ import java.lang.reflect.Type
  * @author xuexiang
  * @since 2018/5/25 下午3:44
  */
-abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
+abstract class BaseFragment<Binding : ViewBinding> : XPageFragment() {
 
     private var mMessageLoader: IMessageLoader? = null
 

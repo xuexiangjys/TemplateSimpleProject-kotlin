@@ -29,7 +29,7 @@ import com.xuexiang.xpage.annotation.Page
  * @since 2019-07-08 00:52
  */
 @Page(name = "空页面")
-class EmptyFragment : BaseFragment<FragmentEmptyBinding?>() {
+class EmptyFragment : BaseFragment<FragmentEmptyBinding>() {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean

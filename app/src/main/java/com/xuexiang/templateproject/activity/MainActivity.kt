@@ -27,7 +27,7 @@ import com.xuexiang.templateproject.fragment.MainFragment
  * @author xuexiang
  * @since 2019-07-07 23:53
  */
-class MainActivity : BaseActivity<ViewBinding?>() {
+class MainActivity : BaseActivity<ViewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
